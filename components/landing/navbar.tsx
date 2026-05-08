@@ -33,55 +33,69 @@ export function Navbar() {
         animate={{
           opacity: 1,
           y: 0,
-          backgroundColor: isScrolled ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0)",
-          borderColor: isScrolled ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0)",
-          backdropFilter: isScrolled ? "blur(24px)" : "blur(0px)",
-          WebkitBackdropFilter: isScrolled ? "blur(24px)" : "blur(0px)",
+          backgroundColor: isScrolled
+            ? "rgba(27, 37, 64, 0.7)"
+            : "rgba(0, 0, 0, 0)",
+          borderColor: isScrolled
+            ? "rgba(255, 255, 255, 0.05)"
+            : "rgba(255, 255, 255, 0)",
+          backdropFilter: isScrolled ? "blur(12px)" : "blur(0px)",
+          WebkitBackdropFilter: isScrolled ? "blur(12px)" : "blur(0px)",
         }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed left-0 top-0 z-50 w-full border-b py-6"
+        className="fixed left-0 right-0 top-0 z-[100] w-full border-b py-6"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between px-6">
+          {/* Logo — far left */}
           <Link
             href="/"
             onClick={() => setIsMobileMenuOpen(false)}
             className="flex items-center gap-2.5"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#d0f100] text-sm font-bold text-[#1b2540]">
               T
             </div>
-            <span className="text-[13px] font-medium tracking-tight text-white">
+            <span className="text-[15px] font-bold tracking-[-0.03em] text-white">
               TapLink
             </span>
           </Link>
 
+          {/* Center nav links — desktop */}
           <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[13px] font-medium tracking-tight text-white/60 transition-colors duration-200 hover:text-white"
+                className="text-[13px] font-medium tracking-[-0.016em] text-white/60 transition-colors duration-200 hover:text-white"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
+          {/* Right side — Login + CTA */}
           <div className="hidden items-center gap-4 md:flex">
             <Link
               href="#"
-              className="text-[13px] font-medium tracking-tight text-white/60 transition-colors duration-200 hover:text-white"
+              className="text-[13px] font-medium tracking-[-0.016em] text-white/70 transition-colors duration-200 hover:text-white"
             >
               Log in
             </Link>
-            <Link
-              href="#pricing"
-              className="rounded-full bg-white px-6 py-2.5 text-[13px] font-medium tracking-tight text-black shadow-[0_0_0_rgba(255,255,255,0)] transition-all duration-200 hover:shadow-[0_0_28px_rgba(255,255,255,0.28)] active:scale-[0.98]"
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Get Started
-            </Link>
+              <Link
+                href="#pricing"
+                className="inline-block rounded-[9999px] bg-[#d0f100] px-5 py-2 text-[13px] font-medium tracking-[-0.016em] text-[#1b2540] transition-shadow duration-200 hover:shadow-[0_0_24px_rgba(208,241,0,0.35)]"
+              >
+                Get Started
+              </Link>
+            </motion.div>
           </div>
 
+          {/* Mobile hamburger */}
           <button
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -94,6 +108,7 @@ export function Navbar() {
         </div>
       </motion.nav>
 
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -101,7 +116,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-black/70 px-5 pt-28 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 z-[99] bg-[#1b2540]/90 px-5 pt-28 backdrop-blur-xl md:hidden"
           >
             <motion.div
               initial={{ opacity: 0, y: -12, scale: 0.98 }}
@@ -120,7 +135,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block rounded-2xl px-4 py-3 text-[13px] font-medium tracking-tight text-white/70 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                    className="block rounded-2xl px-4 py-3 text-[13px] font-medium tracking-[-0.016em] text-white/70 transition-colors duration-200 hover:bg-white/10 hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -136,14 +151,14 @@ export function Navbar() {
                 <Link
                   href="#"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-full px-4 py-3 text-center text-[13px] font-medium tracking-tight text-white/65 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                  className="rounded-[9999px] px-4 py-3 text-center text-[13px] font-medium tracking-[-0.016em] text-white/70 transition-colors duration-200 hover:bg-white/10 hover:text-white"
                 >
                   Log in
                 </Link>
                 <Link
                   href="#pricing"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-full bg-white px-6 py-2.5 text-center text-[13px] font-medium tracking-tight text-black transition-shadow duration-200 hover:shadow-[0_0_28px_rgba(255,255,255,0.28)]"
+                  className="rounded-[9999px] bg-[#d0f100] px-5 py-2.5 text-center text-[13px] font-medium tracking-[-0.016em] text-[#1b2540] transition-shadow duration-200 hover:shadow-[0_0_24px_rgba(208,241,0,0.35)]"
                 >
                   Get Started
                 </Link>
