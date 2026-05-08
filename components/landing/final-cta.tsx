@@ -1,53 +1,25 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-
-const CTA_PARTICLES = Array.from({ length: 20 }, (_, i) => ({
-  left: `${((i * 41 + 11) % 95) + 2}%`,
-  top: `${((i * 59 + 3) % 91) + 4}%`,
-  dur: 3.5 + (i % 4) * 0.7,
-  del: (i % 6) * 0.6,
-}))
 
 export function FinalCTA() {
   return (
-    <section className="section-padding bg-ghost-canvas overflow-hidden">
+    <section className="section-padding bg-ghost-canvas">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative rounded-[28px] overflow-hidden"
+          className="relative rounded-[20px] overflow-hidden py-[72px] md:py-[96px] px-[28px] md:px-[56px] text-center"
           style={{ 
-            background: "linear-gradient(135deg, #001033 0%, #0050f8 50%, #5fbdf7 100%)",
+            backgroundColor: "#001033",
           }}
         >
-          {/* Animated Background Particles */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {CTA_PARTICLES.map((p, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-[3px] h-[3px] bg-pure-surface rounded-full"
-                style={{ left: p.left, top: p.top, opacity: 0.12 }}
-                animate={{ opacity: [0.08, 0.3, 0.08], scale: [1, 1.3, 1] }}
-                transition={{ duration: p.dur, repeat: Infinity, delay: p.del }}
-              />
-            ))}
-          </div>
-
-          {/* Radial Glow — chartreuse accent */}
-          <div 
-            className="absolute top-0 right-0 w-[400px] h-[400px] opacity-20"
-            style={{ 
-              background: "radial-gradient(circle, rgba(208, 241, 0, 0.4) 0%, transparent 70%)" 
-            }}
-          />
-
           {/* Content */}
-          <div className="relative z-10 py-[72px] md:py-[96px] px-[28px] md:px-[56px] text-center">
+          <div className="relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -58,9 +30,9 @@ export function FinalCTA() {
                 className="font-display text-pure-surface max-w-[600px] mx-auto text-balance"
                 style={{ fontSize: "clamp(32px, 4.5vw, 48px)", lineHeight: 1.1, letterSpacing: "-0.01em", fontWeight: 400 }}
               >
-                Ready to Transform
+                Ready to upgrade
                 <br />
-                Your Networking?
+                your networking?
               </h2>
               <p 
                 className="mt-[20px] text-ice-veil/70 max-w-[480px] mx-auto"
@@ -76,23 +48,15 @@ export function FinalCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.25, duration: 0.6 }}
-              className="mt-[28px] flex flex-col sm:flex-row items-center justify-center gap-[12px]"
+              className="mt-[32px]"
             >
               <Link
                 href="#pricing"
-                className="group px-[24px] py-[12px] bg-chartreuse-pulse text-midnight-navy text-[15px] tracking-[-0.016em] rounded-full transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] flex items-center gap-[8px]"
-                style={{ fontWeight: 450, boxShadow: "var(--shadow-subtle-3)" }}
+                className="group inline-flex items-center gap-[8px] px-[32px] py-[16px] bg-chartreuse-pulse text-midnight-navy text-[16px] tracking-[-0.016em] rounded-[9999px] transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+                style={{ fontWeight: 450 }}
               >
-                <Sparkles size={16} />
                 Get Your Card Today
-                <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-              </Link>
-              <Link
-                href="#"
-                className="px-[24px] py-[12px] text-pure-surface text-[15px] tracking-[-0.016em] rounded-full border border-ice-veil/20 hover:border-ice-veil/40 transition-all duration-200"
-                style={{ fontWeight: 400, boxShadow: "var(--shadow-md-2)" }}
-              >
-                Talk to Sales
+                <ArrowRight size={18} className="group-hover:translate-x-0.5 transition-transform duration-200" />
               </Link>
             </motion.div>
 

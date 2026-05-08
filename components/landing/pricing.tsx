@@ -21,7 +21,7 @@ const plans = [
     popular: false,
   },
   {
-    name: "Professional",
+    name: "Pro",
     description: "Best for freelancers and professionals",
     price: { monthly: 19, annual: 15 },
     features: [
@@ -121,16 +121,16 @@ export function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className={`relative rounded-[20px] p-[28px] ${
-                plan.popular 
-                  ? "bg-deep-cosmos text-pure-surface" 
-                  : "bg-pure-surface text-midnight-navy"
-              }`}
-              style={{ boxShadow: plan.popular ? "0 32px 64px -16px rgba(0, 16, 51, 0.35), 0 0 0 1px rgba(0, 16, 51, 0.08)" : "var(--shadow-subtle-4)" }}
+              className={`relative rounded-[20px] p-[28px] bg-pure-surface`}
+              style={{ 
+                boxShadow: plan.popular 
+                  ? "rgba(0, 39, 80, 0.08) 0px 10px 30px -10px, rgba(0, 39, 80, 0.04) 0px 0px 0px 1px" 
+                  : "rgba(0, 39, 80, 0.04) 0px 0px 0px 1px" 
+              }}
             >
               {plan.popular && (
                 <div 
-                  className="absolute -top-[10px] left-1/2 -translate-x-1/2 px-[12px] py-[4px] bg-chartreuse-pulse text-midnight-navy text-[12px] rounded-full"
+                  className="absolute -top-[10px] left-1/2 -translate-x-1/2 px-[12px] py-[4px] bg-chartreuse-pulse text-midnight-navy text-[12px] rounded-[9999px]"
                   style={{ fontWeight: 450, letterSpacing: "-0.005em" }}
                 >
                   Most Popular
@@ -138,29 +138,29 @@ export function Pricing() {
               )}
 
               <div className="mb-[24px]">
-                <h3 className="text-[20px] tracking-[-0.01em]" style={{ fontWeight: 450, lineHeight: 1.3 }}>{plan.name}</h3>
-                <p className={`text-[14px] mt-[4px] tracking-[-0.006em] ${plan.popular ? "text-ice-veil/60" : "text-slate-ink"}`} style={{ fontWeight: 400 }}>
+                <h3 className="text-midnight-navy text-[20px] tracking-[-0.01em]" style={{ fontWeight: 450, lineHeight: 1.3 }}>{plan.name}</h3>
+                <p className="text-slate-ink text-[14px] mt-[4px] tracking-[-0.006em]" style={{ fontWeight: 400 }}>
                   {plan.description}
                 </p>
               </div>
 
               <div className="mb-[24px]">
-                <span className="font-display" style={{ fontSize: "40px", lineHeight: 1.05, letterSpacing: "-0.01em", fontWeight: 400 }}>
+                <span className="font-display text-midnight-navy" style={{ fontSize: "40px", lineHeight: 1.05, letterSpacing: "-0.01em", fontWeight: 400, color: "#1b2540" }}>
                   ${annual ? plan.price.annual : plan.price.monthly}
                 </span>
-                <span className={`text-[14px] tracking-[-0.006em] ml-[4px] ${plan.popular ? "text-ice-veil/50" : "text-slate-ink"}`} style={{ fontWeight: 400 }}>
+                <span className="text-slate-ink text-[14px] tracking-[-0.006em] ml-[4px]" style={{ fontWeight: 400 }}>
                   /month
                 </span>
               </div>
 
               <Link
                 href="#"
-                className={`block text-center py-[12px] rounded-full text-[15px] tracking-[-0.016em] mb-[28px] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+                className={`block text-center py-[12px] rounded-[9999px] text-[15px] tracking-[-0.016em] mb-[28px] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
                   plan.popular
                     ? "bg-chartreuse-pulse text-midnight-navy"
                     : "bg-midnight-navy text-pure-surface"
                 }`}
-                style={{ fontWeight: 450, boxShadow: plan.popular ? "var(--shadow-subtle-3)" : "none" }}
+                style={{ fontWeight: 450 }}
               >
                 {plan.cta}
               </Link>
@@ -168,13 +168,11 @@ export function Pricing() {
               <ul className="space-y-[10px]">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-[10px]">
-                    <div className={`w-[18px] h-[18px] rounded-full flex items-center justify-center flex-shrink-0 ${
-                      plan.popular ? "bg-chartreuse-pulse/20" : "bg-chartreuse-pulse"
-                    }`}>
-                      <Check size={10} className={plan.popular ? "text-chartreuse-pulse" : "text-midnight-navy"} strokeWidth={2.5} />
+                    <div className="w-[18px] h-[18px] rounded-full bg-chartreuse-pulse flex items-center justify-center flex-shrink-0">
+                      <Check size={10} className="text-midnight-navy" strokeWidth={2.5} />
                     </div>
                     <span 
-                      className={`text-[14px] tracking-[-0.006em] ${plan.popular ? "text-ice-veil/80" : "text-midnight-navy"}`}
+                      className="text-midnight-navy text-[14px] tracking-[-0.006em]"
                       style={{ fontWeight: 400 }}
                     >
                       {feature}

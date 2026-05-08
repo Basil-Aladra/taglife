@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDown } from "lucide-react"
+import { Plus, Minus } from "lucide-react"
 
 const faqs = [
   {
@@ -35,7 +35,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="section-padding bg-pure-surface">
+    <section id="faq" className="section-padding bg-ghost-canvas">
       <div className="max-w-[720px] mx-auto px-[24px]">
         {/* Header */}
         <motion.div
@@ -59,8 +59,8 @@ export function FAQ() {
           </h2>
         </motion.div>
 
-        {/* FAQ Items */}
-        <div className="space-y-[8px]">
+        {/* FAQ Items - Minimalist with subtle dividers */}
+        <div>
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -68,13 +68,11 @@ export function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.04, duration: 0.5 }}
+              className={index !== faqs.length - 1 ? "border-b border-fog-border/30" : ""}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className={`w-full text-left p-[20px] rounded-[16px] transition-all duration-200 card-ring ${
-                  openIndex === index ? "bg-pure-surface" : "bg-ghost-canvas hover:bg-ghost-canvas/60"
-                }`}
-                style={openIndex === index ? { boxShadow: "var(--shadow-subtle)" } : {}}
+                className="w-full text-left py-[20px] transition-all duration-200"
               >
                 <div className="flex items-center justify-between gap-[16px]">
                   <h3 
@@ -84,11 +82,15 @@ export function FAQ() {
                     {faq.question}
                   </h3>
                   <motion.div
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex-shrink-0"
+                    initial={false}
+                    animate={{ rotate: openIndex === index ? 0 : 0 }}
+                    className="flex-shrink-0 w-[24px] h-[24px] flex items-center justify-center"
                   >
-                    <ChevronDown className="w-[18px] h-[18px] text-slate-ink" strokeWidth={1.5} />
+                    {openIndex === index ? (
+                      <Minus className="w-[16px] h-[16px] text-midnight-navy" strokeWidth={1.5} />
+                    ) : (
+                      <Plus className="w-[16px] h-[16px] text-slate-ink" strokeWidth={1.5} />
+                    )}
                   </motion.div>
                 </div>
                 
@@ -102,7 +104,7 @@ export function FAQ() {
                       className="overflow-hidden"
                     >
                       <p 
-                        className="pt-[12px] text-slate-ink"
+                        className="pt-[12px] text-slate-ink pr-[40px]"
                         style={{ fontSize: "15px", lineHeight: 1.6, letterSpacing: "-0.016em", fontWeight: 400 }}
                       >
                         {faq.answer}
