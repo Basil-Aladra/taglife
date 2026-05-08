@@ -65,7 +65,7 @@ export function Hero() {
           </Link>
         </motion.div>
 
-        {/* Headline — uses ivarTextFont / Fraunces at 5xl: 48px */}
+        {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,12 +73,11 @@ export function Hero() {
           className="text-center"
         >
           <h1 
-            className="font-display text-pure-surface max-w-[800px] mx-auto text-balance"
+            className="font-sans text-pure-surface max-w-[800px] mx-auto text-balance tracking-tighter"
             style={{ 
               fontSize: "clamp(32px, 5vw, 48px)", 
               lineHeight: 1.1, 
-              letterSpacing: "-0.01em",
-              fontWeight: 400 
+              fontWeight: 500 
             }}
           >
             The Future of Networking
