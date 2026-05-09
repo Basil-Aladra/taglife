@@ -66,6 +66,7 @@ export function CardShowcase() {
   const [activeCard, setActiveCard] = useState(0)
   const [hoveredOption, setHoveredOption] = useState<number | null>(null)
   const [name, setName] = useState("Your Name")
+  const [isFocused, setIsFocused] = useState(false)
   
   // 3D Tilt State
   const [rotateX, setRotateX] = useState(0)
@@ -119,14 +120,59 @@ export function CardShowcase() {
             Find Your Perfect Card
           </h2>
           
-          <div className="mt-[32px] w-full max-w-[320px]">
+          <div className="mt-[32px] w-full max-w-[320px] relative">
+            {/* Neon Arrow Left */}
+            <motion.div
+              animate={{ 
+                x: [-4, 4, -4], 
+                scale: [1, 1.05, 1],
+                opacity: isFocused ? 0 : 1
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+              }}
+              className="absolute -left-[60px] top-[4px] hidden md:block pointer-events-none"
+              style={{ filter: "drop-shadow(0 0 8px #CFF000)" }}
+            >
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#CFF000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 9l5 5-5 5" />
+                <path d="M3 4v5a5 5 0 0 0 5 5h10" />
+              </svg>
+            </motion.div>
+
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
               placeholder="Enter your name"
-              className="w-full px-[16px] py-[12px] bg-white border border-gray-200 rounded-[12px] text-[15px] text-[#1b2540] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0050f8]/20 focus:border-[#0050f8] transition-all"
+              className="w-full px-[16px] py-[12px] bg-white border border-gray-200 rounded-[12px] text-[15px] text-[#1b2540] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0050f8]/20 focus:border-[#0050f8] transition-all relative z-10 shadow-sm"
             />
+
+            {/* Neon Arrow Right */}
+            <motion.div
+              animate={{ 
+                x: [4, -4, 4], 
+                scale: [1, 1.05, 1],
+                opacity: isFocused ? 0 : 1
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: 0.2
+              }}
+              className="absolute -right-[60px] top-[4px] hidden md:block pointer-events-none"
+              style={{ filter: "drop-shadow(0 0 8px #CFF000)" }}
+            >
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#CFF000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10 9l-5 5 5 5" />
+                <path d="M21 4v5a5 5 0 0 1-5 5H4" />
+              </svg>
+            </motion.div>
           </div>
         </motion.div>
 

@@ -144,14 +144,21 @@ const brandIcons = [
   { name: "VS Code", component: VSCodeLogo },
 ]
 
-// Duplicate to create seamless infinite loop
-const repeatedBrands = [...brandIcons, ...brandIcons]
-
 export function TrustedBy() {
   return (
     <section className="py-16 md:py-24 bg-[#f8f9fc] overflow-hidden">
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 35s linear infinite;
+        }
+      `}</style>
+      
       <div className="max-w-[1200px] mx-auto px-[24px]">
-        {/* Header styling specifically requested */}
+        {/* Header */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -161,38 +168,52 @@ export function TrustedBy() {
           Trusted by forward-thinking teams at
         </motion.p>
         
-        {/* Marquee Container with fade masks */}
+        {/* Infinite Marquee Container */}
         <div 
           className="relative w-full overflow-hidden flex items-center"
           style={{ 
-            maskImage: "linear-gradient(to right, transparent 0, black 256px, black calc(100% - 256px), transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to right, transparent 0, black 256px, black calc(100% - 256px), transparent 100%)"
+            maskImage: "linear-gradient(to right, transparent 0, black 150px, black calc(100% - 150px), transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0, black 150px, black calc(100% - 150px), transparent 100%)"
           }}
         >
-          <motion.div
-            className="flex items-center gap-16 md:gap-32 w-max pr-16 md:pr-32"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              repeat: Infinity,
-              ease: "linear",
-              duration: 30,
-            }}
-          >
-            {repeatedBrands.map((brand, index) => {
-              const Icon = brand.component;
-              return (
-                <div
-                  key={`${brand.name}-${index}`}
-                  className="flex items-center justify-center flex-shrink-0 cursor-pointer group"
-                  title={brand.name}
-                >
-                  <Icon 
-                    className="h-8 md:h-11 w-auto transition-transform duration-300 group-hover:scale-110"
-                  />
-                </div>
-              );
-            })}
-          </motion.div>
+          {/* We wrap the entire row in a flex container that runs the animation.
+              Inside we put two identical lists, each having the same width and padding, 
+              so when it translates exactly -50%, it seamlessly loops. */}
+          <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+            
+            {/* First Set */}
+            <div className="flex items-center gap-16 md:gap-24 pr-16 md:pr-24">
+              {brandIcons.map((brand, index) => {
+                const Icon = brand.component;
+                return (
+                  <div
+                    key={`set1-${brand.name}-${index}`}
+                    className="flex items-center justify-center flex-shrink-0 opacity-40 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                    title={brand.name}
+                  >
+                    <Icon className="h-8 md:h-10 w-auto transition-transform duration-300 hover:scale-110" />
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Second Set (Duplicate for seamless loop) */}
+            <div className="flex items-center gap-16 md:gap-24 pr-16 md:pr-24">
+              {brandIcons.map((brand, index) => {
+                const Icon = brand.component;
+                return (
+                  <div
+                    key={`set2-${brand.name}-${index}`}
+                    className="flex items-center justify-center flex-shrink-0 opacity-40 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
+                    title={brand.name}
+                  >
+                    <Icon className="h-8 md:h-10 w-auto transition-transform duration-300 hover:scale-110" />
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
