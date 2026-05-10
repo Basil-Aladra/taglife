@@ -48,12 +48,12 @@ export function Services() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center text-center mb-[64px]"
         >
-          <span 
+          <span
             className="inline-block px-[16px] py-[6px] bg-white text-[#1b2540] text-[11px] uppercase rounded-full mb-[24px] tracking-[0.15em] font-medium shadow-sm"
           >
             Services
           </span>
-          <h2 
+          <h2
             className="text-[#1b2540] font-serif"
             style={{ fontSize: "clamp(36px, 5vw, 56px)", lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 400 }}
           >
@@ -76,47 +76,44 @@ export function Services() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -8, scale: 1.01 }}
-                className={`group cursor-pointer relative flex flex-col rounded-[24px] p-[32px] md:p-[40px] overflow-hidden ${
-                  isFeatured ? "md:col-span-2 lg:col-span-2 min-h-[360px]" : "min-h-[320px]"
-                }`}
+                className={`group cursor-pointer relative flex flex-col rounded-[24px] p-[32px] md:p-[40px] overflow-hidden ${isFeatured ? "md:col-span-2 lg:col-span-2 min-h-[360px]" : "min-h-[320px]"
+                  }`}
                 style={{
-                  background: isFeatured 
-                    ? "linear-gradient(180deg, #001033 0%, #0050f8 55%, #5fbdf7 100%)" 
+                  background: isFeatured
+                    ? "linear-gradient(180deg, #001033 0%, #0050f8 55%, #5fbdf7 100%)"
                     : "#ffffff",
-                  boxShadow: isFeatured 
-                    ? "inset 0 0 20px rgba(255,255,255,0.1), 0 20px 40px -10px rgba(0,80,248,0.3)" 
+                  boxShadow: isFeatured
+                    ? "inset 0 0 20px rgba(255,255,255,0.1), 0 20px 40px -10px rgba(0,80,248,0.3)"
                     : "rgba(0, 39, 80, 0.08) 0px 10px 30px -10px, rgba(0, 39, 80, 0.04) 0px 0px 0px 1px"
                 }}
               >
-                <div 
-                  className={`w-[56px] h-[56px] rounded-full flex items-center justify-center mb-[32px] ${
-                    isFeatured ? "bg-white/10 backdrop-blur-md" : "bg-[#f8f9fc]"
-                  }`}
+                <div
+                  className={`w-[56px] h-[56px] rounded-full flex items-center justify-center mb-[32px] ${isFeatured ? "bg-white/10 backdrop-blur-md" : "bg-[#f8f9fc]"
+                    }`}
                 >
-                  <service.icon 
-                    className={`w-[24px] h-[24px] ${isFeatured ? "text-white" : "text-[#1b2540]"}`} 
-                    strokeWidth={1.5} 
+                  <service.icon
+                    className={`w-[24px] h-[24px] ${isFeatured ? "text-white" : "text-[#1b2540]"}`}
+                    strokeWidth={1.5}
                   />
                 </div>
-                
-                <h3 
+
+                <h3
                   className={`mb-[12px] font-medium ${isFeatured ? "text-white" : "text-[#1b2540]"}`}
                   style={{ fontSize: isFeatured ? "32px" : "22px", lineHeight: 1.2, letterSpacing: "-0.02em" }}
                 >
                   {service.title}
                 </h3>
-                
-                <p 
+
+                <p
                   className={`flex-grow max-w-[500px] ${isFeatured ? "text-white/80" : "text-[#596075]"}`}
                   style={{ fontSize: "16px", lineHeight: 1.6, letterSpacing: "-0.01em" }}
                 >
                   {service.description}
                 </p>
 
-                <div 
-                  className={`mt-[32px] flex items-center gap-[8px] font-medium text-[15px] transition-all duration-300 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 ${
-                    isFeatured ? "text-white" : "text-[#0050f8]"
-                  }`}
+                <div
+                  className={`mt-[32px] flex items-center gap-[8px] font-medium text-[15px] transition-all duration-300 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 ${isFeatured ? "text-white" : "text-[#0050f8]"
+                    }`}
                 >
                   Learn more <ArrowRight className="w-[16px] h-[16px]" />
                 </div>

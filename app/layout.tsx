@@ -32,6 +32,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+import { CustomCursor } from '@/components/ui/custom-cursor'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,6 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="font-sans antialiased bg-ghost-canvas text-midnight-navy">
+        <CustomCursor />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
